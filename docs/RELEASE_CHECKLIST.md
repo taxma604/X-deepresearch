@@ -10,5 +10,8 @@ The repository remains Private. Passing CI does not authorize changing visibilit
 - Verify X permits distribution/use of this Twikit integration or obtain permission. Own cookies, disclaimers and MIT licensing do not grant access rights.
 - Validate permitted live research separately, including a 90-day job and partial/rate-limit behavior. Offline checks do not establish this.
 - Review branding, release tag/version, public installation access and Codex for Open Source application requirements/evidence.
+- Review English and Japanese README parity, real CI badge links, client-specific MCP configuration examples, community templates and actual vs illustrative research samples.
+- Confirm the GitHub repository description/topics and other public metadata reflect the current read-only research scope.
+- Confirm all packaged readme, license and referenced documentation files are included in source/wheel artifacts.
 
 The source development repository and existing production service are outside scope. Never publish their history, credentials, operational settings or research data.

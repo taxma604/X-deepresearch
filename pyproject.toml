@@ -5,6 +5,8 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "x-deepresearch"
 version = "0.3.0"
+readme = "README.md"
+keywords = ["mcp", "x", "twitter", "research", "ai-agents", "social-media-analytics"]
 description = "X-deepresearch: read-only MCP research, JST trends, comparisons and coverage diagnostics"
 requires-python = ">=3.12"
 dependencies = [
@@ -26,6 +28,7 @@ x-deepresearch-doctor = "app.doctor:main"
 [project.urls]
 Repository = "https://github.com/taxma604/X-deepresearch"
 Issues = "https://github.com/taxma604/X-deepresearch/issues"
+Documentation = "https://github.com/taxma604/X-deepresearch/blob/main/docs/clients.md"
 
 [project.optional-dependencies]
 dev = [
