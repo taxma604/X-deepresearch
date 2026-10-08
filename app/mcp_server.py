@@ -35,7 +35,7 @@ def _transport_security() -> TransportSecuritySettings:
 mcp = MCPServer(
     name="x-deepresearch",
     title="X-deepresearch",
-    description="Read-only X research tools backed by a Twikit browser session.",
+    description="Evidence-aware read-only X research, JST trends and coverage diagnostics.",
     instructions=(
         "Use these tools only to read X data. Search can run across X or be narrowed with "
         "X search operators such as from:user. "
@@ -163,7 +163,7 @@ async def start_x_posts_daily_stats(
     description=(
         "Use this to check progress or retrieve the result of a job started with "
         "start_x_posts_daily_stats. A completed job includes its full daily-stat result; "
-        "jobs are cleared when the service restarts."
+        "jobs are in memory by default; use optional SQLite for restart recovery."
     ),
 )
 async def get_x_posts_daily_stats_job(job_id: str) -> dict[str, Any]:

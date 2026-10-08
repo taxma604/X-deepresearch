@@ -1,62 +1,104 @@
+<div align="center">
+
 # X-deepresearch
 
-Read-only X research for local AI assistants: search, user timelines, 90-day JST daily counts, restart checkpoints, comparisons and CSV/JSON/Markdown reports. Python, FastAPI and MCP; MIT licensed.
+**Research X conversations with AI agents — with transparent coverage and repeatable workflows.**
 
-Independent third-party project. Unofficial Twikit access may violate X's Terms and lead to account enforcement. Your own cookies, local execution and the MIT license do not grant permission to access X. Use only with the required permissions. See [DISCLAIMER.md](DISCLAIMER.md).
+[English](README.md) · [日本語](README.ja.md)
 
-## Requirements and installation
+[![CI](https://github.com/taxma604/X-deepresearch/actions/workflows/ci.yml/badge.svg)](https://github.com/taxma604/X-deepresearch/actions/workflows/ci.yml)
+[![Security](https://github.com/taxma604/X-deepresearch/actions/workflows/security.yml/badge.svg)](https://github.com/taxma604/X-deepresearch/actions/workflows/security.yml)
+[![Python](https://img.shields.io/badge/Python-3.12%2B-blue)](pyproject.toml)
+[![MCP](https://img.shields.io/badge/MCP-stdio-purple)](https://modelcontextprotocol.io/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 
-Python 3.12+, [uv](https://docs.astral.sh/uv/getting-started/installation/), Git, Codex CLI and a terminal supporting hidden input are required. This repository is currently **Private**; authenticated GitHub access is required. PyPI publication has not occurred.
+**Read-only search · 90-day daily trends (JST) · Research jobs · Coverage diagnostics · CSV/JSON/Markdown**
+
+</div>
+
+> [!IMPORTANT]
+> **Unofficial X access.** This project currently uses Twikit and your own X browser session. Such access may violate X's terms, and your account may be restricted. Using your own cookies or installing locally does **not** grant permission. Use only with appropriate authorization. Independent project; not affiliated with X. [Details](DISCLAIMER.md).
+
+## Why X-deepresearch?
+
+Most X automation tools focus on posting or managing accounts, and many MCP wrappers focus on fetching individual posts. X-deepresearch focuses on a different workflow: **ask an AI agent to collect, count, compare, and audit the coverage of research results**.
+
+| Research task | What X-deepresearch provides |
+| --- | --- |
+| Search a subject or author | Read-only post search, bounded pagination and deduplication |
+| Study a period | JST daily observed post counts, up to **90 calendar days** per job |
+| Run a long investigation | Start a job, poll progress, then summarize or export |
+| Compare two topics | Compare observed daily counts for matching date ranges |
+| Check reliability | `coverage_complete`, `incomplete_ranges`, `pagination_issue` |
+| Resume after interruption | **Optional** SQLite checkpoints; off by default |
+
+**Research-first, not a posting bot.** It does not publish posts, like, follow, send messages, perform sentiment analysis, or promise a complete archive of X. Coverage diagnostics indicate known retrieval gaps, **not** a guarantee that X returned all matching posts.
+
+## Quick start
+
+**Requirements:** Python 3.12+, [uv](https://docs.astral.sh/uv/getting-started/installation/), Git, a terminal supporting hidden input, and an X session that you are authorized to use. For automatic Codex registration, the [Codex CLI](https://developers.openai.com/codex/cli) must also be installed.
 
 ```bash
 uvx --from git+https://github.com/taxma604/X-deepresearch x-deepresearch-setup
 ```
 
-Setup prompts privately for your own X `auth_token` and `ct0`, then asks whether to allow unrestricted search or restrict authors to an ASCII X-handle allowlist. A terminal that cannot hide input is rejected; there is no plaintext fallback. Cookie values never enter command arguments, Git, logs, Codex configuration or another operator's service.
+The interactive setup asks for your **own** X `auth_token` and `ct0` using hidden prompts, saves them privately on your computer, asks whether to enable global searches or restrict searches to selected authors, and registers a **local stdio MCP server in Codex**. No session values are sent to this project's author or written to Git, logs, or MCP command arguments.
 
-The session is stored outside Git in `~/.config/x-deepresearch/cookies.json`. Search permissions are saved in `~/.config/x-deepresearch/settings.json`, including with `--client none`. POSIX files use 0600 and new configuration directories use 0700. Set `X_DEEPRESEARCH_CONFIG_DIR` to change the directory, or `TWIKIT_COOKIES_FILE` for a custom cookie file. Setup passes these paths to Codex, not cookie values. Environment variables take precedence over saved settings. Native Windows users must separately restrict NTFS ACLs or use WSL.
+**Using Claude Code, Claude Desktop, Cursor, VS Code, or another stdio MCP client?** Run the same setup with `--client none`, then register the server using the [client-specific examples](docs/clients.md). The MCP server is **not** Codex-specific.
 
-Codex registers the server as `x-deepresearch`. Start a new Codex session and check `codex mcp list`. For another local MCP client, append `--client none` to setup, then use:
+> This repository is currently **Private**. The command requires access to its GitHub repository until the public release. It has **not** been published to PyPI; do not use `uvx x-deepresearch` yet. Setup and installation have offline CI coverage, but an authenticated live X end-to-end test is still outstanding.
 
-```json
-{"mcpServers":{"x-deepresearch":{"command":"uvx","args":["--from","git+https://github.com/taxma604/X-deepresearch","x-deepresearch"]}}}
-```
+[Full installation and privacy notes](docs/INSTALL.md) · [Client setup](docs/clients.md)
 
-See [installation details](docs/INSTALL.md) for custom paths and local development.
+## Ask your AI assistant
 
-## Usage and tools
+> Search recent posts discussing "physical AI". Return a concise synthesis with original post URLs and identify any incomplete search pages.
 
-Ask your assistant to search `from:example_user AI since:2026-07-01 until:2026-10-01`, or start a daily-count study for `AI` from `2026-07-01` through `2026-09-28`. An allowlist requires one permitted `from:handle` author; unrestricted mode permits broader queries. Boolean author-policy bypasses are rejected.
+> Count observed X mentions of "AI agents" for the previous 30 calendar days, grouped by **JST date**. Show the daily series, peak day, and coverage warnings.
 
-| MCP tool | Purpose |
+> Compare observed daily volumes for two X search queries across the same dates. Clearly state if either result is incomplete.
+
+These are **example prompts**, not claims about data retrieved during testing. You can see the actual job sequence and output fields in [Research examples](docs/examples.md).
+
+## Available MCP tools
+
+| Tool | Purpose |
 | --- | --- |
-| `search_x_posts` | Search and paginate posts |
-| `get_x_user_posts` | User timeline |
-| `get_x_user_profile` | User profile |
-| `get_x_post` | Single post |
-| `search_x_posts_daily_stats` | Bounded JST daily sample |
-| `start_x_posts_daily_stats` | Start asynchronous research, up to 90 days |
-| `get_x_posts_daily_stats_job` | Poll progress and results |
-| `summarize_x_research_job` | Counts, peaks and coverage summary |
-| `compare_x_research_jobs` | Compare completed jobs over the same range |
-| `export_x_research_job` | Export CSV, JSON or Markdown |
+| `search_x_posts` | Search and paginate read-only posts |
+| `get_x_user_posts` | Read a user's timeline |
+| `get_x_user_profile` | Read user profile metadata |
+| `get_x_post` | Read a post by ID |
+| `search_x_posts_daily_stats` | Sample observed post counts by JST day |
+| `start_x_posts_daily_stats` | Start an asynchronous research job (up to 90 days) |
+| `get_x_posts_daily_stats_job` | Poll status and fetch the result |
+| `summarize_x_research_job` | Summarize peaks, averages, total, and coverage |
+| `compare_x_research_jobs` | Compare two completed jobs on identical dates |
+| `export_x_research_job` | Produce CSV, JSON, or Markdown output |
 
-Poll the returned `job_id`, inspect `coverage_complete`, `incomplete_ranges` and `pagination_issue`, then summarize, compare or export completed jobs. Searches support pagination, deduplication, cursor-cycle detection and bounded retry/backoff. Coverage flags describe known gaps in upstream results, not an exhaustive archive or guaranteed access.
+Results are bounded by configured limits and upstream availability. Start long studies asynchronously and poll their `job_id`. The synchronous daily-stats tool returns a **bounded sample**, not an exhaustive multi-week total.
 
-## Optional restart recovery
+## Supported environments
 
-SQLite is **disabled by default**; ordinary jobs stay in memory. Set `X_RESEARCH_JOB_DB=~/.local/share/x-deepresearch/jobs.sqlite3` to persist finished date-window checkpoints and completed results. Interrupted jobs resume when the server starts or a job is requested; unfinished windows are fetched again. Keep the database private because it contains queries and results. Persistence is for one local process and requires durable storage.
+- **Codex CLI:** interactive one-command onboarding and registration.
+- **Claude Code / Claude Desktop / Cursor / VS Code:** local stdio MCP configuration examples; **not all have been end-to-end tested**.
+- **Other MCP hosts:** any client implementing a compatible local stdio transport can attempt the documented configuration.
 
-## Development
+Local session files reside under `~/.config/x-deepresearch/` by default. SQLite restart recovery is **opt-in** via `X_RESEARCH_JOB_DB`. [Security](SECURITY.md) · [Troubleshooting](docs/clients.md#troubleshooting).
+
+## Develop
 
 ```bash
 git clone https://github.com/taxma604/X-deepresearch.git
 cd X-deepresearch
 uv sync --extra dev --locked
-uv run pytest -q
-uv run ruff check .
+uv run --locked pytest -q
+uv run --locked ruff check .
 ```
 
-The distribution and primary command are `x-deepresearch`; setup is `x-deepresearch-setup`. Auxiliary offline commands are `x-deepresearch-auth init` and `x-deepresearch-doctor`. The authenticated REST/HTTP implementation is retained for private local use; its data endpoints require a strong `X_RESEARCH_ACCESS_TOKEN`. A plugin directory listing or shared multi-user cloud service is outside this project's scope.
+Tests mock X access; passing CI does not imply that X permits the access method or that a user's browser session will work.
 
-Tests use fake sessions and clients; successful tests do not establish live X access or permission. See [SECURITY.md](SECURITY.md), [CONTRIBUTING.md](CONTRIBUTING.md) and [public release checklist](docs/RELEASE_CHECKLIST.md). No development-repository history is included. Do not change visibility solely because CI passes.
+## Contributing and project status
+
+Documentation, client configuration fixes, robust aggregation, reproducible tests, and honest coverage reporting are welcome. [Contributing](CONTRIBUTING.md) · [Changelog](CHANGELOG.md) · [Security](SECURITY.md) · [MIT License](LICENSE).
+
+**Release status:** pre-publication, version `0.3.0`; no public package release or hosted multi-user service. Source history has been separated from the original private development repository. [Public release checklist](docs/RELEASE_CHECKLIST.md).
