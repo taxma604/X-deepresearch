@@ -13,4 +13,4 @@ This project follows semantic versioning when stable releases are published. The
 - Document local stdio usage with Claude Code, Claude Desktop, Cursor, VS Code and generic compatible MCP clients.
 - Provide English and Japanese README files and community contribution guidance.
 
-These are source-level capabilities; authenticated live X access and client-specific installation must still be validated before a public release.
+A maintainer reported local authenticated Windows/WSL validation on 2026-10-09. See [Validation status](docs/VALIDATION.md). This does not establish platform permission or complete cross-client coverage.

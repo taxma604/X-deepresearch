@@ -46,7 +46,7 @@ uvx --from git+https://github.com/taxma604/X-deepresearch x-deepresearch-setup
 
 **Claude Code・Claude Desktop・Cursor・VS Codeを使う場合：** 同じセットアップコマンドに `--client none` を付け、[クライアント別設定](docs/clients.md)に従って登録してください。MCP本体はCodex専用ではありません。
 
-> リポジトリは現在**Private**です。Public化するまではGitHubへのアクセス権が必要です。PyPI公開もまだ行っていません。セットアップ・インストールのオフラインCIはありますが、Xへの認証付きE2E実行は未検証です。
+> リポジトリは現在**Private**です。Public化するまではGitHubへのアクセス権が必要です。PyPI公開もまだ行っていません。セットアップ・インストールのオフラインCIは成功しています。2026-10-09にメンテナーがWindows／WSLで認証付き読み取りとMCP呼び出しを実機検証したと報告していますが、90日全期間や他のMCPクライアントは未検証です。[検証状況](docs/VALIDATION.md)をご覧ください。
 
 [詳しい導入とCookieの扱い](docs/INSTALL.md) · [クライアント別設定](docs/clients.md)
 
@@ -83,7 +83,7 @@ uvx --from git+https://github.com/taxma604/X-deepresearch x-deepresearch-setup
 - **Claude Code / Claude Desktop / Cursor / VS Code：** ローカルstdio MCPの設定例を用意。**全環境でのE2Eテストが完了したわけではありません。**
 - **その他：** stdio方式のMCPに対応するクライアントなら設定可能です。
 
-セッション情報は通常 `~/.config/x-deepresearch/` に保存します。再起動後のJob復元は `X_RESEARCH_JOB_DB` を設定した場合のみ有効です。[セキュリティ](SECURITY.md) · [トラブルシューティング](docs/clients.md#troubleshooting)
+セッション情報は通常 `~/.config/x-deepresearch/` に保存します。再起動後のJob復元は `X_RESEARCH_JOB_DB` を設定した場合のみ有効です。[セキュリティ](SECURITY.md) · [検証状況](docs/VALIDATION.md) · [トラブルシューティング](docs/clients.md#troubleshooting)
 
 ## 開発
 

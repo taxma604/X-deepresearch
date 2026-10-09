@@ -46,7 +46,7 @@ The interactive setup asks for your **own** X `auth_token` and `ct0` using hidde
 
 **Using Claude Code, Claude Desktop, Cursor, VS Code, or another stdio MCP client?** Run the same setup with `--client none`, then register the server using the [client-specific examples](docs/clients.md). The MCP server is **not** Codex-specific.
 
-> This repository is currently **Private**. The command requires access to its GitHub repository until the public release. It has **not** been published to PyPI; do not use `uvx x-deepresearch` yet. Setup and installation have offline CI coverage, but an authenticated live X end-to-end test is still outstanding.
+> This repository is currently **Private**. The command requires access to its GitHub repository until the public release. It has **not** been published to PyPI; do not use `uvx x-deepresearch` yet. Setup and installation have offline CI coverage. A maintainer's **2026-10-09 Windows/WSL test report** covers authenticated read-only requests and local MCP calls; the full 90-day range and non-Codex clients remain untested. See [Validation status](docs/VALIDATION.md).
 
 [Full installation and privacy notes](docs/INSTALL.md) · [Client setup](docs/clients.md)
 
@@ -83,7 +83,7 @@ Results are bounded by configured limits and upstream availability. Start long s
 - **Claude Code / Claude Desktop / Cursor / VS Code:** local stdio MCP configuration examples; **not all have been end-to-end tested**.
 - **Other MCP hosts:** any client implementing a compatible local stdio transport can attempt the documented configuration.
 
-Local session files reside under `~/.config/x-deepresearch/` by default. SQLite restart recovery is **opt-in** via `X_RESEARCH_JOB_DB`. [Security](SECURITY.md) · [Troubleshooting](docs/clients.md#troubleshooting).
+Local session files reside under `~/.config/x-deepresearch/` by default. SQLite restart recovery is **opt-in** via `X_RESEARCH_JOB_DB`. [Security](SECURITY.md) · [Validation status](docs/VALIDATION.md) · [Troubleshooting](docs/clients.md#troubleshooting).
 
 ## Develop
 
