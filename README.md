@@ -47,15 +47,21 @@ The interactive setup asks for your **own** X `auth_token` and `ct0` using hidde
 
 [Full installation and privacy notes](docs/INSTALL.md) · [Client setup](docs/clients.md) · [日本語の導入手順](docs/INSTALL.ja.md)
 
-## Ask your AI assistant
+## Research ideas to try
 
-> Search recent posts discussing "physical AI". Return a concise synthesis with original post URLs and identify any incomplete search pages.
+### 1. Has the buzz already peaked?
 
-> Count observed X mentions of "AI agents" for the previous 30 calendar days, grouped by **JST date**. Show the daily series, peak day, and coverage warnings.
+> Investigate X posts about "[topic]" over the past 30 days. Find the peak day, compare the first and last seven days, and show representative posts with their URLs. Is the observed conversation growing or fading?
 
-> Compare observed daily volumes for two X search queries across the same dates. Clearly state if either result is incomplete.
+### 2. Was it already being discussed before launch?
 
-These are **example prompts**, not claims about data retrieved during testing. You can see the actual job sequence and output fields in [Research examples](docs/examples.md) ([日本語](docs/examples.ja.md)).
+> Look at X posts about "[product]" from seven days before to seven days after its announcement. Put the early discussions in chronological order and compare daily post counts before and after the announcement. Include original post links.
+
+### 3. What was X discussing before a stock surged?
+
+> Research posts about "[company or ticker]" from seven days before to seven days after its sharp price rise. Show when discussions began to increase, observed daily post counts, and relevant post links. Distinguish the timeline from any unproven claim that X activity caused the price move.
+
+Replace the bracketed placeholders with your subject. These prompts use existing search, daily-count and comparison tools; the AI assistant organizes the findings. [More research workflows](docs/examples.md) ([日本語](docs/examples.ja.md)).
 
 ## Available MCP tools
 
