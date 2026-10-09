@@ -26,7 +26,7 @@ For bug fixes, add a regression test. For features, document tool inputs, expect
 
 ## Documentation
 
-`README.md` is the canonical English introduction; `README.ja.md` mirrors the same capabilities and limitations in Japanese. Update both when changing behavior or release status. Put longer client instructions in `docs/clients.md` and prompts/output examples in `docs/examples.md`.
+`README.md` is the canonical English introduction; `README.ja.md` mirrors the same capabilities and limitations in Japanese. Update both when changing behavior or release status. Put longer client instructions in `docs/clients.md` and prompts/output examples in `docs/examples.md`. Keep the matching `.ja.md` translations aligned with English when behavior changes.
 
 Do not claim an integration is tested simply because its JSON shape is documented.
 

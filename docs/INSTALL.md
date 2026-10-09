@@ -1,5 +1,7 @@
 # Local installation
 
+[English](INSTALL.md) · [日本語](INSTALL.ja.md)
+
 Install Python 3.12+, Git, uv and Codex CLI. While the repository is Private, Git must be authenticated for taxma604/X-deepresearch. Run in a terminal supporting hidden input:
 
 ```bash

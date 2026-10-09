@@ -1,6 +1,6 @@
 # Connect an MCP client
 
-[English](../README.md) · [日本語](../README.ja.md)
+[English](clients.md) · [日本語](clients.ja.md)
 
 X-deepresearch is a **local stdio MCP server**, not a hosted API or a ChatGPT plugin. The client starts `uvx` on **the same machine and operating environment** that contains your X session.
 
