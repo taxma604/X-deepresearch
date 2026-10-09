@@ -2,7 +2,7 @@
 
 # X-deepresearch
 
-**Research X conversations with AI agents — with transparent coverage and repeatable workflows.**
+**Turn X conversations into research you can track and compare.**
 
 [English](README.md) · [日本語](README.ja.md)
 
@@ -12,38 +12,23 @@
 [![MCP](https://img.shields.io/badge/MCP-stdio-purple)](https://modelcontextprotocol.io/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 
-**Read-only search · 90-day daily trends (JST) · Research jobs · Coverage diagnostics · CSV/JSON/Markdown**
+**Search posts · Track 90 days · Compare topics · Export reports**
 
 </div>
 
-## Why X-deepresearch?
-
-Most X automation tools focus on posting or managing accounts, and many MCP wrappers focus on fetching individual posts. X-deepresearch focuses on a different workflow: **ask an AI agent to collect, count, compare, and audit the coverage of research results**.
-
-| Research task | What X-deepresearch provides |
-| --- | --- |
-| Search a subject or author | Read-only post search, bounded pagination and deduplication |
-| Study a period | JST daily observed post counts, up to **90 calendar days** per job |
-| Run a long investigation | Start a job, poll progress, then summarize or export |
-| Compare two topics | Compare observed daily counts for matching date ranges |
-| Check reliability | `coverage_complete`, `incomplete_ranges`, `pagination_issue` |
-| Resume after interruption | **Optional** SQLite checkpoints; off by default |
-
-**Research-first, not a posting bot.** It does not publish posts, like, follow, send messages, perform sentiment analysis, or promise a complete archive of X. Coverage diagnostics indicate known retrieval gaps, **not** a guarantee that X returned all matching posts.
-
 ## Quick start
 
-**Requirements:** Python 3.12+, [uv](https://docs.astral.sh/uv/getting-started/installation/), Git, a terminal supporting hidden input, and your own X browser session. For automatic Codex registration, the [Codex CLI](https://developers.openai.com/codex/cli) must also be installed.
+**What you need:** Python 3.12+, [uv](https://docs.astral.sh/uv/getting-started/installation/), Git and your own X session. Use a terminal with hidden input; [Codex CLI](https://developers.openai.com/codex/cli) is needed for automatic Codex registration.
 
 ```bash
 uvx --from git+https://github.com/taxma604/X-deepresearch x-deepresearch-setup
 ```
 
-The interactive setup asks for your **own** X `auth_token` and `ct0` using hidden prompts ([where to find them](docs/INSTALL.md#how-to-find-your-x-cookies)), saves them privately on your computer, asks whether to enable global searches or restrict searches to selected authors, and registers a **local stdio MCP server in Codex**. No session values are sent to this project's author or written to Git, logs, or MCP command arguments.
+The setup securely collects your **own** `auth_token` and `ct0` ([where to find them](docs/INSTALL.md#how-to-find-your-x-cookies)), saves them locally, sets search permissions, and registers the MCP server in Codex. Credentials are never included in command arguments or shared with the project author.
 
-**Using Claude Code, Claude Desktop, Cursor, VS Code, or another stdio MCP client?** Run the same setup with `--client none`, then register the server using the [client-specific examples](docs/clients.md). The MCP server is **not** Codex-specific.
+**Claude Code, Claude Desktop, Cursor or VS Code?** Run setup with `--client none`, then follow the [MCP client instructions](docs/clients.md).
 
-> Install from GitHub using the command above (not from PyPI). If the repository is private when you install, GitHub access is required. [Validation results](docs/VALIDATION.md).
+**Distribution:** Install from GitHub; PyPI is not yet supported. [Validation results](docs/VALIDATION.md).
 
 [Full installation and privacy notes](docs/INSTALL.md) · [Client setup](docs/clients.md) · [日本語の導入手順](docs/INSTALL.ja.md)
 
@@ -62,6 +47,21 @@ The interactive setup asks for your **own** X `auth_token` and `ct0` using hidde
 > Research posts about "[company or ticker]" from seven days before to seven days after its sharp price rise. Show when discussions began to increase, observed daily post counts, and relevant post links. Distinguish the timeline from any unproven claim that X activity caused the price move.
 
 Replace the bracketed placeholders with your subject. These prompts use existing search, daily-count and comparison tools; the AI assistant organizes the findings. [More research workflows](docs/examples.md) ([日本語](docs/examples.ja.md)).
+
+## Why X-deepresearch?
+
+Most X automation tools focus on posting or managing accounts, and many MCP wrappers focus on fetching individual posts. X-deepresearch focuses on a different workflow: **ask an AI agent to collect, count, compare, and audit the coverage of research results**.
+
+| Research task | What X-deepresearch provides |
+| --- | --- |
+| Search a subject or author | Read-only post search, bounded pagination and deduplication |
+| Study a period | JST daily observed post counts, up to **90 calendar days** per job |
+| Run a long investigation | Start a job, poll progress, then summarize or export |
+| Compare two topics | Compare observed daily counts for matching date ranges |
+| Check reliability | `coverage_complete`, `incomplete_ranges`, `pagination_issue` |
+| Resume after interruption | **Optional** SQLite checkpoints; off by default |
+
+**Research-first, not a posting bot.** It does not publish posts, like, follow, send messages, perform sentiment analysis, or promise a complete archive of X. Coverage diagnostics indicate known retrieval gaps, **not** a guarantee that X returned all matching posts.
 
 ## Available MCP tools
 
