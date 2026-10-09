@@ -45,7 +45,7 @@ Cookieの値は開発者のサーバーへ送られず、Git、ログ、MCPの�
 
 **Claude Code、Claude Desktop、Cursor、VS Codeなどで使う場合**は、コマンドの末尾に `--client none` を追加してください。初期設定を済ませたあと、[クライアント別の設定手順](docs/clients.ja.md)に従ってMCPサーバーを登録します。MCPサーバー自体はCodex専用ではありません。
 
-> 現在、リポジトリは**非公開（Private）**です。インストールにはGitHubでのアクセス権が必要です。PyPIにはまだ公開していません。[動作検証の結果](docs/VALIDATION.md)。
+> 現在はPyPIではなくGitHubからインストールします。リポジトリが非公開の場合のみ、GitHubでのアクセス権が必要です。[動作検証の結果](docs/VALIDATION.md)。
 
 [詳しいインストール手順](docs/INSTALL.ja.md) · [クライアント別の設定手順](docs/clients.ja.md)
 
@@ -110,7 +110,7 @@ uv run --locked ruff check .
 
 [開発への参加方法](CONTRIBUTING.md) · [変更履歴](CHANGELOG.md) · [セキュリティ](SECURITY.md) · [MITライセンス](LICENSE)
 
-**公開状況：** バージョン `0.3.0` の公開準備中です。PyPIへの登録や、複数人で使う公開クラウドサービスの提供は行っていません。元の非公開開発リポジトリのGit履歴は引き継いでいません。[公開前の確認事項](docs/RELEASE_CHECKLIST.md)を参照してください。
+**配布状況：** ソースコードのバージョンは `0.3.0` です。PyPIへの登録や、複数人で使う公開クラウドサービスの提供は行っていません。元の非公開開発リポジトリのGit履歴は引き継いでいません。[公開前の確認事項](docs/RELEASE_CHECKLIST.md)を参照してください。
 
 > [!IMPORTANT]
 > X-deepresearchは、Xへのアクセスに[Twikit](https://github.com/d60/twikit)と利用者自身のXセッションを使用しています。X公式のツールではありません。[補足情報](DISCLAIMER.md)。

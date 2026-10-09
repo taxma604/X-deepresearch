@@ -1,6 +1,6 @@
 # Before making this repository Public
 
-The repository remains Private. Passing CI does not authorize changing visibility.
+This checklist records pre-release verification. Passing CI alone does not establish platform data-access permission.
 
 - Confirm tests, Ruff, compilation, sdist/wheel builds and clean installation succeed for the release revision.
 - Confirm dependency audit and independent full-history secret scanning; manually review private notes and data.
