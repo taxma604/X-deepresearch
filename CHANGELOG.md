@@ -1,8 +1,8 @@
 # Changelog
 
-This project follows semantic versioning when stable releases are published. The repository currently uses `0.3.0` as an internal package version; **a public package release has not been published**.
+The source package is currently version `0.3.0`. Its initial GitHub Release has been prepared; consult the GitHub **Releases** page for whether it has actually been published. This project is not distributed through PyPI.
 
-## Unreleased
+## 0.3.0 — Initial open-source package
 
 - Prepare a new clean-history OSS repository under `X-deepresearch`.
 - Align local distribution, CLI commands, server identity, and setup documentation.

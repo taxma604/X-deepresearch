@@ -11,7 +11,7 @@ This checklist records pre-release verification. Passing CI alone does not estab
 - [ ] **Publication blocker:** Determine whether distributing and using this Twikit implementation is permitted by X's current Terms or get appropriate written permission / switch to an authorized source. X's Terms prohibit unconsented scraping and facilitating violations; own cookies, disclaimers, and MIT do not grant access rights.
 - [x] Maintainer reports authenticated read-only X searches, profiles, 3-day counts, progress, comparison, summaries, exports and SQLite recovery in the local environment. This report does not establish X's permission for the access method.
 - [ ] Validate longer research (including 90 days), partial/rate-limit behavior and cross-version upgrades **if permitted**.
-- Review branding, release tag/version, public installation access and Codex for Open Source application requirements/evidence.
+- Review branding, release tag/version, public installation access and Codex for Open Source application requirements/evidence. See [maintainer publication guide](PUBLISH.md) and [v0.3.0 release notes](releases/v0.3.0.md).
 - Review English and Japanese README parity, real CI badge links, client-specific MCP configuration examples, community templates and actual vs illustrative research samples.
 - Confirm the GitHub repository description/topics and other public metadata reflect the current read-only research scope.
 - Confirm all packaged readme, license and referenced documentation files are included in source/wheel artifacts.
