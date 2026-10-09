@@ -2,7 +2,7 @@
 
 # X-deepresearch
 
-**AIでXの投稿を調査し、集計・比較の結果とデータの取得状況を確認できるMCPサーバー。**
+**Xの投稿をAIで検索・集計・比較。話題の変化を調べるMCPサーバー。**
 
 [English](README.md) · [日本語](README.ja.md)
 
@@ -12,40 +12,23 @@
 [![MCP](https://img.shields.io/badge/MCP-stdio-purple)](https://modelcontextprotocol.io/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 
-**投稿検索（読み取り専用） · 最大90日間の日別集計（日本時間） · 長期間の調査ジョブ · 取得漏れの確認 · CSV/JSON/Markdown出力**
+**投稿検索 · 最大90日間の推移 · 話題の比較 · レポート出力**
 
 </div>
 
-## X-deepresearchとは
-
-Xの自動化ツールには、投稿やアカウント管理が中心のものもあれば、個別の投稿を取得するMCPツールもあります。X-deepresearchは、**AIエージェントから調査を始め、投稿を集め、件数の集計や比較を行い、どこまで取得できたかを確認する**ためのオープンソースソフトウェアです。
-
-| やりたいこと | 主な機能 |
-| --- | --- |
-| 話題や投稿者について調べる | 読み取り専用の投稿検索、ページ単位の取得、重複除去 |
-| 期間ごとの投稿数を調べる | 1回のジョブで最大90日間、日本時間での日別件数を集計 |
-| 時間のかかる調査を進める | ジョブを開始し、進捗を確認してから集計・出力 |
-| 2つの話題を比較する | 同じ日付範囲で取得された投稿数を日別に比較 |
-| 取得状況を確認する | `coverage_complete`、`incomplete_ranges`、`pagination_issue` |
-| 中断した調査を再開する | SQLiteに進捗を保存する設定（初期状態では無効） |
-
-**投稿やアカウント操作を自動化するツールではありません。** 投稿・いいね・フォロー・DM送信は行わず、感情分析にも対応していません。Xの全投稿を網羅したデータベースでもありません。取得漏れを示す情報は、検出できた問題を知らせるものです。**問題が表示されなくても、条件に一致する全投稿を取得できたとは限りません。**
-
 ## インストールと初期設定
 
-必要なものは、Python 3.12以降、[uv](https://docs.astral.sh/uv/getting-started/installation/)、Git、入力した文字を非表示にできるターミナル、自分のXセッションです。Codexに自動登録する場合は、[Codex CLI](https://developers.openai.com/codex/cli)も必要です。
+**必要なもの：** Python 3.12以降、[uv](https://docs.astral.sh/uv/getting-started/installation/)、Git、自分のXセッション。入力文字を非表示にできるターミナルを使います。Codexへの自動登録には[Codex CLI](https://developers.openai.com/codex/cli)も必要です。
 
 ```bash
 uvx --from git+https://github.com/taxma604/X-deepresearch x-deepresearch-setup
 ```
 
-実行すると、利用者自身のXの `auth_token` と `ct0` の入力を求められます（[取得方法](docs/INSTALL.ja.md#cookieの取得方法)）。入力した文字は表示されません。CookieはPC内に保存され、検索対象をX全体にするか、指定した投稿者に限定するかを設定します。その後、ローカルのMCPサーバーをCodexへ登録します。
+初期設定では `auth_token` と `ct0` を非表示で入力します（[取得方法](docs/INSTALL.ja.md#cookieの取得方法)）。CookieをPC内に保存し、検索範囲を設定してCodexにMCPサーバーを登録します。Cookieの値を開発者へ送信したり、起動コマンドに記録したりすることはありません。
 
-Cookieの値は開発者のサーバーへ送られず、Git、ログ、MCPの起動コマンドにも記録されません。
+**Claude Code・Claude Desktop・Cursor・VS Codeで使う場合：** `--client none` を付けて初期設定し、[クライアント別の手順](docs/clients.ja.md)からMCPを登録してください。
 
-**Claude Code、Claude Desktop、Cursor、VS Codeなどで使う場合**は、コマンドの末尾に `--client none` を追加してください。初期設定を済ませたあと、[クライアント別の設定手順](docs/clients.ja.md)に従ってMCPサーバーを登録します。MCPサーバー自体はCodex専用ではありません。
-
-> 現在はPyPIではなくGitHubからインストールします。リポジトリが非公開の場合のみ、GitHubでのアクセス権が必要です。[動作検証の結果](docs/VALIDATION.md)。
+**配布方法：** 現在はGitHubからインストールします。PyPIには未登録です。[動作検証の結果](docs/VALIDATION.md)。
 
 [詳しいインストール手順](docs/INSTALL.ja.md) · [クライアント別の設定手順](docs/clients.ja.md)
 
@@ -64,6 +47,21 @@ Cookieの値は開発者のサーバーへ送られず、Git、ログ、MCPの�
 > 「○○」の株価が急騰した日の前後7日間のX投稿を調べて。話題が増え始めた時期、日別の投稿数、関連する投稿をURL付きでまとめて。Xの投稿が株価を動かしたと断定せず、時系列で整理して。
 
 「○○」を調べたい話題・製品・銘柄に置き換えてください。検索・日別集計・比較には既存のツールを使い、結果の整理はAIが行います。[詳しい調査例](docs/examples.ja.md)（[English](docs/examples.md)）。
+
+## X-deepresearchとは
+
+Xの自動化ツールには、投稿やアカウント管理が中心のものもあれば、個別の投稿を取得するMCPツールもあります。X-deepresearchは、**AIエージェントから調査を始め、投稿を集め、件数の集計や比較を行い、どこまで取得できたかを確認する**ためのオープンソースソフトウェアです。
+
+| やりたいこと | 主な機能 |
+| --- | --- |
+| 話題や投稿者について調べる | 読み取り専用の投稿検索、ページ単位の取得、重複除去 |
+| 期間ごとの投稿数を調べる | 1回のジョブで最大90日間、日本時間での日別件数を集計 |
+| 時間のかかる調査を進める | ジョブを開始し、進捗を確認してから集計・出力 |
+| 2つの話題を比較する | 同じ日付範囲で取得された投稿数を日別に比較 |
+| 取得状況を確認する | `coverage_complete`、`incomplete_ranges`、`pagination_issue` |
+| 中断した調査を再開する | SQLiteに進捗を保存する設定（初期状態では無効） |
+
+**投稿やアカウント操作を自動化するツールではありません。** 投稿・いいね・フォロー・DM送信は行わず、感情分析にも対応していません。Xの全投稿を網羅したデータベースでもありません。取得漏れを示す情報は、検出できた問題を知らせるものです。**問題が表示されなくても、条件に一致する全投稿を取得できたとは限りません。**
 
 ## 利用できるMCPツール
 
