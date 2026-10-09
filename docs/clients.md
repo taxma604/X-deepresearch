@@ -14,7 +14,7 @@ uvx --from git+https://github.com/taxma604/X-deepresearch x-deepresearch-setup -
 
 The setup prompts for your own `auth_token` and `ct0`, stores them outside Git in `~/.config/x-deepresearch/cookies.json`, and saves search permission choices alongside them. **Never paste session cookies into an MCP JSON, issue, chat, pull request, or command line.**
 
-If the repo is still Private, Git authentication is required. Browser cookies may be subject to X terms; use only with permission.
+For a private GitHub repository, Git authentication is required. Browser cookies may be subject to X terms; use only with permission.
 
 ## Codex CLI
 
@@ -111,7 +111,7 @@ Do **not** run this stdio command directly and expect a readable human interface
 ## Troubleshooting
 
 - **`uvx: command not found`** — install uv, then restart the shell/client so the updated PATH is visible. A GUI app may need a full path to `uvx`.
-- **Cannot clone the Git repository** — it remains Private during release preparation; sign in with appropriate Git credentials or use an authorized source clone.
+- **Cannot clone the Git repository** — check the repository URL, network access and Git permissions. A private repository requires authenticated access.
 - **`codex` missing** — rerun setup with `--client none` for a different MCP host.
 - **Hidden input unavailable** — perform setup in an actual terminal; there is deliberately no visible-input fallback.
 - **Server launches but cannot find credentials** — run setup in the **same environment/user account** as the MCP host. If you customized `X_DEEPRESEARCH_CONFIG_DIR` or `TWIKIT_COOKIES_FILE`, pass those *paths* via the client's environment configuration.

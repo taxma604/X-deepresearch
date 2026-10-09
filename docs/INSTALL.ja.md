@@ -2,7 +2,7 @@
 
 [English](INSTALL.md) · [日本語](INSTALL.ja.md)
 
-Python 3.12以降、Git、[uv](https://docs.astral.sh/uv/getting-started/installation/) とCodex CLIをインストールしてください。リポジトリが非公開の間は、`taxma604/X-deepresearch` にアクセスできるGitHubアカウントが必要です。
+Python 3.12以降、Git、[uv](https://docs.astral.sh/uv/getting-started/installation/) とCodex CLIをインストールしてください。リポジトリが非公開の場合は、`taxma604/X-deepresearch` にアクセスできるGitHubアカウントが必要です。
 
 入力文字を隠せるターミナルで、次のコマンドを実行します。
 

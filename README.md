@@ -43,7 +43,7 @@ The interactive setup asks for your **own** X `auth_token` and `ct0` using hidde
 
 **Using Claude Code, Claude Desktop, Cursor, VS Code, or another stdio MCP client?** Run the same setup with `--client none`, then register the server using the [client-specific examples](docs/clients.md). The MCP server is **not** Codex-specific.
 
-> This repository is currently **Private**, so GitHub access is required for installation. It has not yet been published to PyPI. [Validation results](docs/VALIDATION.md).
+> Install from GitHub using the command above (not from PyPI). If the repository is private when you install, GitHub access is required. [Validation results](docs/VALIDATION.md).
 
 [Full installation and privacy notes](docs/INSTALL.md) · [Client setup](docs/clients.md) · [日本語の導入手順](docs/INSTALL.ja.md)
 
@@ -104,7 +104,7 @@ Automated tests use mock X clients and do not require an X account.
 
 Documentation, client configuration fixes, robust aggregation, reproducible tests, and honest coverage reporting are welcome. [Contributing](CONTRIBUTING.md) · [Changelog](CHANGELOG.md) · [Security](SECURITY.md) · [MIT License](LICENSE).
 
-**Release status:** pre-publication, version `0.3.0`; no public package release or hosted multi-user service. Source history has been separated from the original private development repository. [Public release checklist](docs/RELEASE_CHECKLIST.md).
+**Package status:** source version `0.3.0`; not published on PyPI, with no hosted multi-user service. Source history has been separated from the original private development repository. [Public release checklist](docs/RELEASE_CHECKLIST.md).
 
 > [!IMPORTANT]
 > X-deepresearch uses [Twikit](https://github.com/d60/twikit) and the user's own X browser session to access X. It is not an official X product. [Additional information](DISCLAIMER.md).
