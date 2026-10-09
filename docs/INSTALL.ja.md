@@ -14,6 +14,14 @@ uvx --from git+https://github.com/taxma604/X-deepresearch x-deepresearch-setup
 
 ターミナルが入力文字を隠せない場合、初期設定は中断されます。入力内容が画面に表示される方法へ自動で切り替わることはありません。Xへのアクセスには必要な許可があることを前提とします。
 
+## Cookieの取得方法
+
+1. **自分のPC**のブラウザーで[x.com](https://x.com)にログインします。
+2. **Chrome／Edge**では`F12`（または`Ctrl+Shift+I`）で開発者ツールを開き、**Application → Cookies → https://x.com** を選びます。**Firefox**では **Storage → Cookies → https://x.com** を開きます。
+3. `auth_token` と `ct0` を探し、それぞれの **Value（値）** をコピーします。値は `x-deepresearch-setup` の入力欄に、指示に従って1つずつ貼り付けてください。入力した文字は画面に表示されません。
+
+この2つのCookieはログイン情報です。**他人やAIチャットに送らず、GitHubにも載せないでください。** コマンドの引数やMCPのJSON設定へ書く必要もありません。初期設定コマンドがPC内に保存します。
+
 ## 設定の保存先
 
 Cookieと検索範囲の設定は、Gitリポジトリの外にある `~/.config/x-deepresearch/` に保存されます。POSIX環境では、ファイルの権限は `0600`、新規作成する設定ディレクトリは `0700` になります。ただし、既存の親ディレクトリの権限までは変更しません。

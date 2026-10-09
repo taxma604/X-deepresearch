@@ -16,9 +16,6 @@
 
 </div>
 
-> [!IMPORTANT]
-> **Xへのアクセスには非公式の方法を使用しています。** 現在はTwikitと利用者自身のXブラウザーセッションを使います。この方法はXの利用規約に違反する可能性があり、アカウントが制限されるおそれがあります。自分のCookieを使ったり、PC上で動かしたりするだけでは、Xへのアクセスが許可されたことにはなりません。必要な許可を得たうえで利用してください。本プロジェクトはX社とは関係ありません。[詳しくはこちら](DISCLAIMER.md)。
-
 ## X-deepresearchとは
 
 Xの自動化ツールには、投稿やアカウント管理が中心のものもあれば、個別の投稿を取得するMCPツールもあります。X-deepresearchは、**AIエージェントから調査を始め、投稿を集め、件数の集計や比較を行い、どこまで取得できたかを確認する**ためのオープンソースソフトウェアです。
@@ -36,19 +33,19 @@ Xの自動化ツールには、投稿やアカウント管理が中心のもの�
 
 ## インストールと初期設定
 
-必要なものは、Python 3.12以降、[uv](https://docs.astral.sh/uv/getting-started/installation/)、Git、入力した文字を非表示にできるターミナル、適切な利用許可のあるXセッションです。Codexに自動登録する場合は、[Codex CLI](https://developers.openai.com/codex/cli)も必要です。
+必要なものは、Python 3.12以降、[uv](https://docs.astral.sh/uv/getting-started/installation/)、Git、入力した文字を非表示にできるターミナル、自分のXセッションです。Codexに自動登録する場合は、[Codex CLI](https://developers.openai.com/codex/cli)も必要です。
 
 ```bash
 uvx --from git+https://github.com/taxma604/X-deepresearch x-deepresearch-setup
 ```
 
-実行すると、利用者自身のXの `auth_token` と `ct0` の入力を求められます。入力した文字は表示されません。CookieはPC内に保存され、検索対象をX全体にするか、指定した投稿者に限定するかを設定します。その後、ローカルのMCPサーバーをCodexへ登録します。
+実行すると、利用者自身のXの `auth_token` と `ct0` の入力を求められます（[取得方法](docs/INSTALL.ja.md#cookieの取得方法)）。入力した文字は表示されません。CookieはPC内に保存され、検索対象をX全体にするか、指定した投稿者に限定するかを設定します。その後、ローカルのMCPサーバーをCodexへ登録します。
 
 Cookieの値は開発者のサーバーへ送られず、Git、ログ、MCPの起動コマンドにも記録されません。
 
 **Claude Code、Claude Desktop、Cursor、VS Codeなどで使う場合**は、コマンドの末尾に `--client none` を追加してください。初期設定を済ませたあと、[クライアント別の設定手順](docs/clients.ja.md)に従ってMCPサーバーを登録します。MCPサーバー自体はCodex専用ではありません。
 
-> 現在、リポジトリは**非公開（Private）**です。一般公開するまでは、GitHubでのアクセス権が必要です。PyPIにもまだ公開していないため、`uvx x-deepresearch` だけではインストールできません。オフラインのCIテストは成功しており、2026年10月9日にはメンテナーからWindows／WSL上での認証付き検索とMCP呼び出しの動作報告がありました。ただし、90日間すべてを対象にした調査やCodex以外のMCPクライアントは未検証です。[検証状況](docs/VALIDATION.md)を参照してください。
+> 現在、リポジトリは**非公開（Private）**です。インストールにはGitHubでのアクセス権が必要です。PyPIにはまだ公開していません。[動作検証の結果](docs/VALIDATION.md)。
 
 [詳しいインストール手順](docs/INSTALL.ja.md) · [クライアント別の設定手順](docs/clients.ja.md)
 
@@ -82,7 +79,7 @@ Cookieの値は開発者のサーバーへ送られず、Git、ログ、MCPの�
 ## 対応する環境
 
 - **Codex CLI**：対話式の初期設定からMCP登録まで、1コマンドで実行できます。
-- **Claude Code／Claude Desktop／Cursor／VS Code**：ローカルMCPの設定例を用意しています。ただし、これらすべてで実際の接続を検証したわけではありません。
+- **Claude Code／Claude Desktop／Cursor／VS Code**：ローカルMCPの設定手順を用意しています。
 - **その他のMCPクライアント**：ローカルのstdio方式に対応していれば、設定して利用できます。
 
 Cookieなどの設定ファイルは、初期状態では `~/.config/x-deepresearch/` に保存されます。ジョブを再起動後も復元するには、`X_RESEARCH_JOB_DB` を明示的に設定してSQLite保存を有効にしてください。
@@ -99,7 +96,7 @@ uv run --locked pytest -q
 uv run --locked ruff check .
 ```
 
-テストでは実際のXではなく、模擬クライアントを使います。CIが成功しても、実際のXセッションで動作することや、Xによるアクセス許可があることは保証されません。
+自動テストでは模擬Xクライアントを使うため、Xアカウントは必要ありません。
 
 ## 貢献・ライセンス・公開状況
 
@@ -108,3 +105,6 @@ uv run --locked ruff check .
 [開発への参加方法](CONTRIBUTING.md) · [変更履歴](CHANGELOG.md) · [セキュリティ](SECURITY.md) · [MITライセンス](LICENSE)
 
 **公開状況：** バージョン `0.3.0` の公開準備中です。PyPIへの登録や、複数人で使う公開クラウドサービスの提供は行っていません。元の非公開開発リポジトリのGit履歴は引き継いでいません。[公開前の確認事項](docs/RELEASE_CHECKLIST.md)を参照してください。
+
+> [!IMPORTANT]
+> X-deepresearchは、Xへのアクセスに[Twikit](https://github.com/d60/twikit)と利用者自身のXセッションを使用しています。X公式のツールではありません。[補足情報](DISCLAIMER.md)。

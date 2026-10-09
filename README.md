@@ -16,9 +16,6 @@
 
 </div>
 
-> [!IMPORTANT]
-> **Unofficial X access.** This project currently uses Twikit and your own X browser session. Such access may violate X's terms, and your account may be restricted. Using your own cookies or installing locally does **not** grant permission. Use only with appropriate authorization. Independent project; not affiliated with X. [Details](DISCLAIMER.md).
-
 ## Why X-deepresearch?
 
 Most X automation tools focus on posting or managing accounts, and many MCP wrappers focus on fetching individual posts. X-deepresearch focuses on a different workflow: **ask an AI agent to collect, count, compare, and audit the coverage of research results**.
@@ -36,17 +33,17 @@ Most X automation tools focus on posting or managing accounts, and many MCP wrap
 
 ## Quick start
 
-**Requirements:** Python 3.12+, [uv](https://docs.astral.sh/uv/getting-started/installation/), Git, a terminal supporting hidden input, and an X session that you are authorized to use. For automatic Codex registration, the [Codex CLI](https://developers.openai.com/codex/cli) must also be installed.
+**Requirements:** Python 3.12+, [uv](https://docs.astral.sh/uv/getting-started/installation/), Git, a terminal supporting hidden input, and your own X browser session. For automatic Codex registration, the [Codex CLI](https://developers.openai.com/codex/cli) must also be installed.
 
 ```bash
 uvx --from git+https://github.com/taxma604/X-deepresearch x-deepresearch-setup
 ```
 
-The interactive setup asks for your **own** X `auth_token` and `ct0` using hidden prompts, saves them privately on your computer, asks whether to enable global searches or restrict searches to selected authors, and registers a **local stdio MCP server in Codex**. No session values are sent to this project's author or written to Git, logs, or MCP command arguments.
+The interactive setup asks for your **own** X `auth_token` and `ct0` using hidden prompts ([where to find them](docs/INSTALL.md#how-to-find-your-x-cookies)), saves them privately on your computer, asks whether to enable global searches or restrict searches to selected authors, and registers a **local stdio MCP server in Codex**. No session values are sent to this project's author or written to Git, logs, or MCP command arguments.
 
 **Using Claude Code, Claude Desktop, Cursor, VS Code, or another stdio MCP client?** Run the same setup with `--client none`, then register the server using the [client-specific examples](docs/clients.md). The MCP server is **not** Codex-specific.
 
-> This repository is currently **Private**. The command requires access to its GitHub repository until the public release. It has **not** been published to PyPI; do not use `uvx x-deepresearch` yet. Setup and installation have offline CI coverage. A maintainer's **2026-10-09 Windows/WSL test report** covers authenticated read-only requests and local MCP calls; the full 90-day range and non-Codex clients remain untested. See [Validation status](docs/VALIDATION.md).
+> This repository is currently **Private**, so GitHub access is required for installation. It has not yet been published to PyPI. [Validation results](docs/VALIDATION.md).
 
 [Full installation and privacy notes](docs/INSTALL.md) · [Client setup](docs/clients.md) · [日本語の導入手順](docs/INSTALL.ja.md)
 
@@ -80,7 +77,7 @@ Results are bounded by configured limits and upstream availability. Start long s
 ## Supported environments
 
 - **Codex CLI:** interactive one-command onboarding and registration.
-- **Claude Code / Claude Desktop / Cursor / VS Code:** local stdio MCP configuration examples; **not all have been end-to-end tested**.
+- **Claude Code / Claude Desktop / Cursor / VS Code:** local stdio MCP configuration guides.
 - **Other MCP hosts:** any client implementing a compatible local stdio transport can attempt the documented configuration.
 
 Local session files reside under `~/.config/x-deepresearch/` by default. SQLite restart recovery is **opt-in** via `X_RESEARCH_JOB_DB`. [Security](SECURITY.md) · [Validation status](docs/VALIDATION.md) · [Troubleshooting](docs/clients.md#troubleshooting).
@@ -95,10 +92,13 @@ uv run --locked pytest -q
 uv run --locked ruff check .
 ```
 
-Tests mock X access; passing CI does not imply that X permits the access method or that a user's browser session will work.
+Automated tests use mock X clients and do not require an X account.
 
 ## Contributing and project status
 
 Documentation, client configuration fixes, robust aggregation, reproducible tests, and honest coverage reporting are welcome. [Contributing](CONTRIBUTING.md) · [Changelog](CHANGELOG.md) · [Security](SECURITY.md) · [MIT License](LICENSE).
 
 **Release status:** pre-publication, version `0.3.0`; no public package release or hosted multi-user service. Source history has been separated from the original private development repository. [Public release checklist](docs/RELEASE_CHECKLIST.md).
+
+> [!IMPORTANT]
+> X-deepresearch uses [Twikit](https://github.com/d60/twikit) and the user's own X browser session to access X. It is not an official X product. [Additional information](DISCLAIMER.md).
