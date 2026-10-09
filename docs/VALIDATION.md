@@ -18,7 +18,7 @@ The maintainer reported the following results from a Windows + WSL installation:
 | Reinstall and upgrade in a local setup | Passed |
 | MCP tool discovery and invocation via Windows/WSL Codex app-server | 10 tools discovered and callable |
 | Reconnect after MCP process restart | Passed |
-| Authorized-session search for a public post and user profile | Search and profile returned in local test |
+| Authenticated-session search for a public post and user profile | Search and profile returned in local test |
 | JST daily count (3 days), background job status | Passed |
 | Job summary, query comparison, CSV, JSON and Markdown exports | Passed |
 | Optional SQLite checkpoint and interrupted-job recovery | Passed |
