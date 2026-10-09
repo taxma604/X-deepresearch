@@ -8,7 +8,15 @@ Install Python 3.12+, Git, uv and Codex CLI. While the repository is Private, Gi
 uvx --from git+https://github.com/taxma604/X-deepresearch x-deepresearch-setup
 ```
 
-Enter your own auth_token and ct0 at the hidden prompts, then choose unrestricted search or an allowlist such as `alice,bob_2`. Handles contain 1–15 ASCII letters, digits or underscores; empty elements are rejected. Setup refuses plaintext fallback. The server uses the session only when you request X data, subject to X permissions and terms.
+Enter your own auth_token and ct0 at the hidden prompts (see the instructions below), then choose unrestricted search or an allowlist such as `alice,bob_2`. Handles contain 1–15 ASCII letters, digits or underscores; empty elements are rejected. Setup refuses plaintext fallback. The server uses the session only when you request X data, subject to X permissions and terms.
+
+## How to find your X cookies
+
+1. On your **own computer**, sign in to [x.com](https://x.com) using a desktop browser.
+2. In **Chrome or Edge**, press `F12` (or `Ctrl+Shift+I`), then open **Application → Cookies → https://x.com**. In **Firefox**, open **Storage → Cookies → https://x.com**.
+3. Find `auth_token` and `ct0`; copy the **Value** of each cookie into its corresponding **hidden** `x-deepresearch-setup` prompt.
+
+These cookies grant access to your X account. Treat them like passwords: **never post or send them to an AI chat, GitHub, or another person**. Do not add them to command-line arguments or MCP JSON settings. The setup tool handles local storage for you.
 
 Session and search settings are saved outside Git under `~/.config/x-deepresearch/`. POSIX files use 0600 and new configuration directories 0700; existing parents are not chmodded. Native Windows requires owner-only NTFS ACLs or WSL. Setup registers `x-deepresearch` with `codex mcp add`. Restart Codex and check `codex mcp list`.
 
