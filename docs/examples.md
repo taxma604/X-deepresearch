@@ -1,5 +1,7 @@
 # Research workflows (illustrative)
 
+[English](examples.md) · [日本語](examples.ja.md)
+
 These examples describe tool calls and output *shapes*. They do not claim to show live X results. Your MCP client chooses tool calls from natural language prompts.
 
 ## 1. Search with links and coverage diagnostics

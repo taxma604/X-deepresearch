@@ -48,7 +48,7 @@ The interactive setup asks for your **own** X `auth_token` and `ct0` using hidde
 
 > This repository is currently **Private**. The command requires access to its GitHub repository until the public release. It has **not** been published to PyPI; do not use `uvx x-deepresearch` yet. Setup and installation have offline CI coverage. A maintainer's **2026-10-09 Windows/WSL test report** covers authenticated read-only requests and local MCP calls; the full 90-day range and non-Codex clients remain untested. See [Validation status](docs/VALIDATION.md).
 
-[Full installation and privacy notes](docs/INSTALL.md) · [Client setup](docs/clients.md)
+[Full installation and privacy notes](docs/INSTALL.md) · [Client setup](docs/clients.md) · [日本語の導入手順](docs/INSTALL.ja.md)
 
 ## Ask your AI assistant
 
@@ -58,7 +58,7 @@ The interactive setup asks for your **own** X `auth_token` and `ct0` using hidde
 
 > Compare observed daily volumes for two X search queries across the same dates. Clearly state if either result is incomplete.
 
-These are **example prompts**, not claims about data retrieved during testing. You can see the actual job sequence and output fields in [Research examples](docs/examples.md).
+These are **example prompts**, not claims about data retrieved during testing. You can see the actual job sequence and output fields in [Research examples](docs/examples.md) ([日本語](docs/examples.ja.md)).
 
 ## Available MCP tools
 
