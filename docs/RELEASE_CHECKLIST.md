@@ -17,3 +17,6 @@ This checklist records pre-release verification. Passing CI alone does not estab
 - Confirm all packaged readme, license and referenced documentation files are included in source/wheel artifacts.
 
 The source development repository and existing production service are outside scope. Never publish their history, credentials, operational settings or research data.
+
+- [ ] Check README.ja.md is included in the **sdist** (MANIFEST.in) for releases **after v0.3.0**. The already-published v0.3.0 archive is unchanged; do not silently rewrite its checksums.
+- [ ] Ensure duplicate tag workflow runs do not fail merely because a GitHub Release already exists; published release assets must remain unchanged.

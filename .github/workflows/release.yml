@@ -13,6 +13,9 @@ jobs:
     # Do not accidentally publish a release while this repo is still private.
     if: ${{ github.event.repository.private == false }}
     runs-on: ubuntu-latest
+    concurrency:
+      group: x-deepresearch-release-${{ github.ref }}
+      cancel-in-progress: false
     permissions:
       contents: write
     steps:
@@ -66,6 +69,10 @@ jobs:
           RELEASE_TAG: ${{ github.ref_name }}
         shell: bash
         run: |
+          if gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" > /dev/null 2>&1; then
+            echo "Release $RELEASE_TAG already exists; leaving its immutable published assets unchanged."
+            exit 0
+          fi
           gh release create "$RELEASE_TAG" dist/x_deepresearch-*.whl dist/x_deepresearch-*.tar.gz \
             --verify-tag \
             --title "X-deepresearch $RELEASE_TAG" \
