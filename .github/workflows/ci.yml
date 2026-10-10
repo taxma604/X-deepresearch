@@ -28,6 +28,18 @@ jobs:
       - name: Build sdist and wheel
         run: |
           uv build --out-dir dist
+      - name: Check Japanese README in sdist
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import tarfile
+
+          sdists = list(Path("dist").glob("*.tar.gz"))
+          assert len(sdists) == 1, sdists
+          with tarfile.open(sdists[0], "r:gz") as archive:
+              names = archive.getnames()
+              assert any(name.endswith("/README.ja.md") for name in names), names
+          PY
       - name: Install wheel in a clean environment
         run: |
           python -m venv /tmp/x-research-release-test
